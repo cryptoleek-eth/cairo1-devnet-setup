@@ -21,10 +21,9 @@ After the images are pulled, you can run following codes to start the starknet-d
 ### Enabling dumping and loading with Docker
 
 To enable dumping and loading if running Devnet in a Docker container, you must bind the container path with the path on your host machine.
-Dump docker container is neat technique to boostrap your env quickly.
+Dump docker container is neat technique to boostrap your env quickly in the future. 
 
 This example:
-
 - Relies on Docker bind mount; try Docker volume instead.
 - Assumes that `/actual/dumpdir` exists. If unsure, use absolute paths.
 - Assumes you are listening on `127.0.0.1:5050`.
@@ -39,6 +38,8 @@ To dump to `/actual/dumpdir/dump.pkl` on Devnet shutdown, run:
 ```bash
 docker run -p 127.0.0.1:5050:5050 --name starknet-devnet --mount type=bind,source=/actual/dumpdir,target=/dumpdir shardlabs/starknet-devnet:0.5.0a1-arm --seed 1234 --timeout 10000  --dump-on exit --dump-path /dumpdir/dump.pkl
 ```
+
+You can see I set timeout to 10000, which is important, otherwise for complex cairo1 file it will time out.
 
 ## Test whether the devnet runs successfully
 
