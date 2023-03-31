@@ -8,6 +8,7 @@ Please refer to this [documentation](https://github.com/starknet-edu/deploy-cair
 
 ## Setup starknet-devenet
 For a new user, you need to first pull the image from docker:
+Obviously, the version will keep changing and 0.5.0 still in aplha. Always find the latest stable version if possible.
 ```bash
 ### For Windows or Mac users:
 docker pull shardlabs/starknet-devnet:0.5.0a1
@@ -20,6 +21,7 @@ After the images are pulled, you can run following codes to start the starknet-d
 ### Enabling dumping and loading with Docker
 
 To enable dumping and loading if running Devnet in a Docker container, you must bind the container path with the path on your host machine.
+Dump docker container is neat technique to boostrap your env quickly.
 
 This example:
 
@@ -48,6 +50,8 @@ export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAcco
 ```
 
 ### Set up accounts
+After your new your account, remember you need to faucet some eth into your shiny new account. Using postman mint.
+
 ```bash=
 starknet new_account --account admin --gateway_url http://localhost:5050 --feeder_gateway_url http://localhost:5050
 starknet deploy_account --account admin --gateway_url http://localhost:5050 --feeder_gateway_url http://localhost:5050
@@ -58,8 +62,14 @@ starknet deploy_account --account admin --gateway_url http://localhost:5050 --fe
 export ACCT_ADMIN=0x581e71db726ccffda8d7b3c12b516d6f9108d8b4b211f3715e821223b5f550a
 ```
 
+### Now we will use cairo-101 to test your local setup.
+```
+https://github.com/starknet-edu/starknet-cairo-101.git
+git checkout cairo1
+```
+
 ### Deploy the `TDERC20` contract
-```bash=
+```bash
 ### Build the smart contract:
 scarb build
 
@@ -78,3 +88,5 @@ starknet invoke --function distribute_points --address 0x05e8e1c965d59bc44f109f7
 ### Check the balance of the admin account
 starknet call --function balanceOf --address 0x05e8e1c965d59bc44f109f72b9e67cedfa069352c4704723e123271827c49196 --inputs $ACCT_ADMIN --gateway_url http://localhost:5050 --feeder_gateway_url http://localhost:5050
 ```
+
+### You should see everything is working on your local dev-net
