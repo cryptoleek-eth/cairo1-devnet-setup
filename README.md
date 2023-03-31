@@ -3,14 +3,14 @@
 ## Install Rust
 Please refer to this [documentation](https://github.com/starkware-libs/cairo#prerequisites)
 
-## Install `cario-lang`
+## Install `cairo-lang`
 Please refer to this [documentation](https://github.com/starknet-edu/deploy-cairo1-demo#installing-cairo-lang)
 
 ## Setup starknet-devenet
 For a new user, you need to first pull the image from docker:
 Obviously, the version will keep changing and 0.5.0 still in aplha. Always find the latest stable version if possible.
 ```bash
-### For Windows or Mac users:
+### For Windows or Linux users:
 docker pull shardlabs/starknet-devnet:0.5.0a1
 
 ### For Mac M1 users
